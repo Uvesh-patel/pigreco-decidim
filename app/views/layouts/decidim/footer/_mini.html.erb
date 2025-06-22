@@ -1,0 +1,12 @@
+<% if current_organization.official_img_footer.attached? %>
+  <%= link_to current_organization.official_url do %>
+    <%= image_tag current_organization.attached_uploader(:official_img_footer).path, alt: current_organization.name %>
+  <% end %>
+<% end %>
+
+<div class="decidim-logo">
+  <a rel="decidim" href="https://decidim.org/" target="_blank">
+    <%= t("layouts.decidim.footer.made_with_open_source").html_safe %>
+    <strong>PIGRECO</strong>
+  </a>
+</div>

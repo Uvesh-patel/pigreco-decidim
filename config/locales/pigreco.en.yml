@@ -1,0 +1,61 @@
+en:
+  decidim:
+    application_name: PIGRECO
+    pages:
+      home:
+        footer_sub_hero:
+          footer_sub_hero_body: "Join PIGRECO, a participatory platform for multi-risk management."
+          footer_sub_hero_headline: "PIGRECO Participation Platform"
+        hero:
+          participate: "Participate"
+          welcome: "Pigreco – Empowering Communities to Co-Design Multi-Risk Resilience"
+        extended:
+          debates: "Debates"
+          debates_explanation: "Share your opinions and views through debates on specific topics."
+          meetings: "Meetings"
+          meetings_explanation: "Let's meet and collaborate on multi-risk management solutions."
+          proposals: "Proposals"
+          proposals_explanation: "Share your ideas to improve risk management in our community."
+          how_to_participate: "How to participate in PIGRECO"
+        statistics:
+          headline: "Current Platform Statistics"
+        highlighted_processes:
+          active_processes: "Active Processes"
+          see_all_processes: "See all processes"
+    menu:
+      home: "Home"
+    footer:
+      made_with_open_source: "Platform powered by <a target=\"_blank\" href=\"https://decidim.org\">Decidim</a>."
+      copyright: "© %{year} PIGRECO – All rights reserved."
+    components:
+      proposals:
+        name: "Ideas"
+      meetings:
+        name: "Gatherings"
+      budgets:
+        name: "Risk Projects"
+    authorization_handlers:
+      dummy_authorization_handler:
+        name: "PIGRECO Identity Verification"
+  layouts:
+    decidim:
+      footer:
+        download_open_data: "Open Data"
+        made_with_open_source: "PIGRECO Platform"
+      application:
+        skip_button: "Skip to content"
+  meta:
+    description: "PIGRECO is a GIS-based decision-support platform for multi-risk assessment and participatory governance, focused on bringing together communities, experts, and authorities to co-design disaster risk reduction strategies."
+    participation_levels:
+      level1:
+        title: "Information"
+        description: "Access hazard maps, risk assessments, and expert reports"
+      level2:
+        title: "Consultation"
+        description: "Provide feedback on proposed risk management plans"
+      level3:
+        title: "Collaboration"
+        description: "Co-create solutions through proposals and deliberation"
+      level4:
+        title: "Co-Decision"
+        description: "Vote on final strategies and resource allocation"

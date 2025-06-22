@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+
+# Logs
+log/*
+*.log
+
+# Temp files
+tmp/*
+temp/*
+
+# Caches
+.sass-cache
+node_modules
+yarn-error.log
+
+# Editor files
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+docker-compose*.yml
+
+# Ruby/Rails
+.bundle
+vendor/bundle
+
+# Documentation
+README.md
+LICENSE

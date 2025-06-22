@@ -2,34 +2,44 @@ version: '3'
 services:
   decidim:
     image: decidim/decidim:latest
-    entrypoint: ["/code/vendor/hello-world.sh"]
-    # The entrypoint override above wipes out the CMD 
-    # on the Dockerfile-deploy, so we need to declare it 
-    # again here (https://github.com/docker/compose/issues/3140)
     command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
     ports:
       - 3000:3000
+    # Mount customization directories for PIGRECO branding and functionality
     volumes:
-      # Makes our entrypoint scripts available to the container
-      # under /code/vendor
-      - ./scripts:/code/vendor
+      - ./assets:/code/app/assets/images/custom:ro
+      - ./app/views:/code/app/views:ro
+      - ./app/services:/code/app/services:ro
+      - ./config/locales:/code/config/locales:ro
+      - ./config/initializers:/code/config/initializers:ro
+      - ./app/packs/images:/code/app/packs/images:ro
+      - ./db/seeds:/code/db/seeds:ro
+      - ./db/seeds.rb:/code/db/seeds.rb:ro
+      - ./lib:/code/lib:ro
+      - ./storage:/code/storage
+      - ./log:/code/log
     environment:
       - RAILS_ENV=development
-      - DATABASE_HOST=pg
+      - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
-    links:
-      - pg
+      - DATABASE_PASSWORD=password
+      - DECIDIM_ORGANIZATION_NAME=PIGRECO
+      - DECIDIM_HOST=localhost
+    depends_on:
+      - db
       - redis
-  pg:
-    image: postgres
+  db:
+    image: postgres:14
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - ./temp/db_data:/var/lib/postgresql/data
     environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
   redis:
     image: redis
     volumes:
       - redis-data:/data
 volumes:
-  pg-data: {}
+  db-data: {}
   redis-data: {}
