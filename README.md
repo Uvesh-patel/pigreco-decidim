@@ -21,10 +21,37 @@ The PIGRECO Risk Governance Platform is a GIS-enabled participatory decision-sup
 
 If you're in a hurry and just want to get the platform running:
 
+### Windows Users
+```batch
+# Clone the repository
+git clone https://github.com/Uvesh-patel/pigreco-decidim.git
+cd pigreco-decidim
+
+# Run the automated setup script
+pigreco-setup.bat
+
+# Access the platform at http://localhost:3000
+# Admin credentials: admin@pigreco.local / decidim123456789
+```
+
+### Linux/Mac Users
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/pigreco.git
-cd pigreco
+git clone https://github.com/Uvesh-patel/pigreco-decidim.git
+cd pigreco-decidim
+
+# Run the automated setup script
+./pigreco-setup.sh
+
+# Access the platform at http://localhost:3000
+# Admin credentials: admin@pigreco.local / decidim123456
+```
+
+### Manual Setup
+```bash
+# Clone the repository
+git clone https://github.com/Uvesh-patel/pigreco-decidim.git
+cd pigreco-decidim
 
 # Start the containers
 docker-compose up -d
@@ -62,8 +89,8 @@ The system uses mounted volumes to customize:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/pigreco.git
-   cd pigreco
+   git clone https://github.com/Uvesh-patel/pigreco-decidim.git
+   cd pigreco-decidim
    ```
 
 2. **Configure environment**
@@ -97,11 +124,18 @@ The system uses mounted volumes to customize:
    
    **Admin credentials:**
    - Email: admin@pigreco.local
-   - Password: decidim123456
+   - Password: 
+     - Windows setup: decidim123456789
+     - Linux/Mac setup: decidim123456
+     - Recommended after first login: DecidimStrongPassword123!@#
    
    **Test user credentials:**
    - Citizen: citizen@pigreco.local / decidim123456
    - Expert: expert@pigreco.local / decidim123456
+   
+   **System admin credentials:**
+   - Email: system@pigreco.local
+   - Password: decidim123456
 
 ### Development Commands
 
@@ -133,25 +167,34 @@ docker-compose restart decidim
 The project follows the standard Decidim structure with additional PIGRECO-specific components:
 
 ```
-pigreco/
+pigreco-decidim/
 ├── app/                      # Application code
 │   ├── services/             # Service objects
 │   │   └── pigreco/          # PIGRECO-specific services
+│   ├── packs/                # JavaScript packs
+│   │   └── images/           # Frontend images
+│   └── views/                # View overrides
+├── assets/                   # Custom assets and branding
 ├── config/
-│   └── initializers/         # Rails initializers
-│       └── pigreco.rb        # PIGRECO specific initializers
+│   ├── initializers/         # Rails initializers
+│   │   └── pigreco.rb        # PIGRECO specific initializers
+│   └── locales/              # Localization files
 ├── db/
 │   ├── seeds/                # Seed data files
 │   │   └── pigreco_content.rb # PIGRECO-specific seed data
 │   └── seeds.rb              # Main seed file
-├── doc/                      # Documentation
 ├── lib/
 │   └── tasks/                # Rake tasks
 │       ├── homepage.rake     # Homepage configuration tasks
-│       ├── pigreco_db.rake   # Database tasks
-│       └── testing/          # Testing tasks
+│       └── pigreco_db.rake   # Database tasks
 ├── log/                      # Log files
+├── pigreco-setup.bat         # Windows setup script
+├── pigreco-setup.sh          # Linux/Mac setup script
+├── run.sh                    # Development run script
+├── fix_and_reset.sh          # Maintenance script
 ├── storage/                  # Storage for uploads and generated files
+├── docker-compose.yml        # Docker configuration
+└── .env.example              # Example environment configuration
 ```
 
 ## Production Deployment
@@ -230,6 +273,13 @@ The platform uses a structured seed process to initialize the database with demo
 ```bash
 # Full seed (organization, admin, demo content)
 docker-compose exec decidim bash -c "cd /code && bundle exec rake db:seed"
+
+# Alternatively, use the provided setup scripts
+# For Windows:
+.\pigreco-setup.bat
+
+# For Linux/Mac:
+./pigreco-setup.sh
 
 # Just create admin (keeps existing data)
 docker-compose exec decidim bash -c "cd /code && bundle exec rake pigreco:create_admin"
