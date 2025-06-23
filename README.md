@@ -30,6 +30,8 @@ cd pigreco-decidim
 # Run the automated setup script
 pigreco-setup.bat
 
+# This will take approximately 3-5 minutes for all migrations and seeding
+
 # Access the platform at http://localhost:3000
 # Admin credentials: admin@pigreco.local / decidim123456789
 ```
@@ -42,6 +44,8 @@ cd pigreco-decidim
 
 # Run the automated setup script
 ./pigreco-setup.sh
+
+# This will take approximately 3-5 minutes for all migrations and seeding
 
 # Access the platform at http://localhost:3000
 # Admin credentials: admin@pigreco.local / decidim123456
@@ -85,6 +89,8 @@ The system uses mounted volumes to customize:
 - 4GB RAM minimum (8GB+ recommended)
 - 20GB free disk space
 
+> **Note**: You may see a warning about the `version` attribute being obsolete in docker-compose.yml. This can be safely ignored, as it doesn't affect functionality.
+
 ### Installation Steps
 
 1. **Clone the repository**
@@ -117,6 +123,41 @@ The system uses mounted volumes to customize:
    # Seed the database
    docker-compose exec decidim bash -c "cd /code && bundle exec rake db:seed"
    ```
+
+### Accessing the Platform
+
+After successful setup, the platform will be accessible at:
+
+- **Web interface**: [http://localhost:3000](http://localhost:3000)
+- **Admin interface**: [http://localhost:3000/admin/](http://localhost:3000/admin/)
+
+### Admin Access
+
+Use the following credentials to access the admin panel:
+
+- **Email**: admin@pigreco.local
+- **Password**: decidim123456789 (Windows) or decidim123456 (Linux/Mac)
+
+> **Note:** It's recommended to change this password to a strong one after first login.
+
+### Test Users
+
+The setup process creates several test users you can use to explore the platform:
+
+- **Admin**: admin@pigreco.local (use admin password above)
+- **Regular users**: user1@pigreco.local through user10@pigreco.local (password: `decidim123456`)
+
+### Demo Content
+
+The platform is pre-populated with demo content for risk assessment:
+
+- **Participatory process**: Community-Driven Multi-Risk Assessment
+- **Proposals**: Several example risk assessment proposals including:
+  - Earthquake Vulnerability Mapping
+  - Flood Impact Simulation Workshop
+  - Public Services Continuity Plan
+  - Long-Term Urban Resilience Strategy
+- **Meetings**: Sample risk assessment related meetings
 
 5. **Access the platform**
    
